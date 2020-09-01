@@ -1,4 +1,4 @@
-# company-ownership-example
+# Company ownership coding challenge
 
 A small coding task that requires solving some simple tasks related to
 the [norwegian share holder registry](https://www.altinn.no/starte-og-drive/skatt-og-avgift/skatt/aksjonarregisteret/).
