@@ -11,20 +11,23 @@ app = Flask(__name__)
 class OwnershipRecord:
     """
     A record of an entity's ownership in a company.
+    Remember, an "entity" is a person or a company.
+
     Contains the following fields:
 
     * `orgnr`
-      The organization number of the company
+      The organization number of the company that is "being owned"
 
     * `company_name`
-      The registered name of the company
+      The registered name of the company that is "being owned"
 
     * `share_class`
       The share class of this holding, typically "Ordinære aksjer",
       but can also be "A-aksjer", "B-aksjer", or something else.
 
     * `owner_name`
-      The name of the owner
+      The name of the owner (the person/company that owns the shares
+      this record describes)
 
     * `owner_birth_or_orgnr`
       The owner's birth year if the owner is a person,
@@ -39,9 +42,13 @@ class OwnershipRecord:
 
     * `number_of_shares`
       The number of shares the owner holds in this company
+      **of this share class**. If a company has both A- and
+      B-shares, and a person holds both types of shares,
+      there will be two `OwnershipRecord` objects for that
+      person.
 
     * `total_shares`
-      Total number of shares in the company
+      Total number of outstanding shares in the company
     """
     orgnr = None
     company_name = None
@@ -183,6 +190,10 @@ class OwnershipDatabase:
                         owner_birth_or_orgnr,
                         owner_postal_address,
                         owner_country,
+
+                        # Note the int() cast here, which makes
+                        # these attributes easier to perform
+                        # calculations on later
                         int(number_of_shares),
                         int(total_shares)
                     )
