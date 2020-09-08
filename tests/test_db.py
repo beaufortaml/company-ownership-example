@@ -1,4 +1,4 @@
-from main import db
+from app.main import db
 
 
 CANICA_AS = "891450052"

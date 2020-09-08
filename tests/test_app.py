@@ -2,7 +2,7 @@ import pytest
 
 from flask import url_for
 
-from main import app
+from app.main import app
 
 CANICA_AS = "891450052"
 
