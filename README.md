@@ -13,7 +13,7 @@ For curious citizens, the full copy can be requested [here](https://www.skatteet
 The application is a simple REST api written in [flask](https://flask.palletsprojects.com/),
 with a very simple local database used to store data in memory.
 
-All application code is located in [main.py](main.py)
+All application code is located in [app/main.py](app/main.py)
 
 Three endpoints are defined:
 
