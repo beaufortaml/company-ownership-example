@@ -42,8 +42,7 @@ Three endpoints are defined:
   as well as some other potentially interesting information.
 
   A company is thought to have an "interesting" ownership
-  structure if there is a foreign entity among its owners
-  (direct _or_ indirect).
+  structure if there is a foreign entity among its owners.
 
   A company is also considered interesting if it has multiple
   share classes.
@@ -128,6 +127,15 @@ passing, you have a great success on your hands.
 If you are running Windows and you have issues running or testing
 the application, we have no idea why. It is probably because you
 are running Windows. Feel free to not complete the challenge.
+
+
+## Help, I'm stuck and/or confused!
+
+* Quit
+
+or
+
+* Send us an [lars+nospam@beaufort.io](email). We're happy to help.
 
 
 ## Submitting solutions
