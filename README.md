@@ -84,6 +84,7 @@ $ python -m pytest
 (where `python` should be your Python 3 interpreter)
 
 When all the code is working as expected, you will see pleasant, green dots.
+
 When the code is not working as expected, you will see a scary, red wall of text.
 
 
