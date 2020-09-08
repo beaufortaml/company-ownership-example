@@ -134,7 +134,7 @@ are running Windows. Feel free to not complete the challenge.
 
 ## Help, I'm stuck and/or confused!
 
-* Quit
+* Quit. We'll meet and discuss why the challenge is awful :(
 
 or
 
