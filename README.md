@@ -1,3 +1,5 @@
+![py.test](https://github.com/beaufortaml/company-ownership-example/workflows/py.test/badge.svg)
+
 # Company ownership coding challenge
 
 A small coding task that requires solving some simple tasks related to
@@ -73,8 +75,6 @@ $ python -m pytest
 Fill in all the sections in [main.py](main.py) that contain a `# TODO` comment.
 
 The challenge is complete when all tests are passing!
-
-![py.test](https://github.com/beaufortaml/company-ownership-example/workflows/py.test/badge.svg)
 
 
 ## Submitting solutions

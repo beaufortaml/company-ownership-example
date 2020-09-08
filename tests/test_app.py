@@ -17,6 +17,7 @@ def client():
     return app.test_client()
 
 
+@pytest.mark.skip("Remove this line")
 @pytest.mark.parametrize("orgnr", [
     "1",
     "s",
