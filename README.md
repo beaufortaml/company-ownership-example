@@ -74,6 +74,8 @@ Fill in all the sections in [main.py](main.py) that contain a `# TODO` comment.
 
 The challenge is complete when all tests are passing!
 
+![py.test](https://github.com/beaufortaml/company-ownership-example/workflows/py.test/badge.svg)
+
 
 ## Submitting solutions
 Make a pull request and point us to it!
