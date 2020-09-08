@@ -7,6 +7,10 @@ the [norwegian share holder registry](https://www.altinn.no/starte-og-drive/skat
 
 For curious citizens, the full copy can be requested [here](https://www.skatteetaten.no/en/presse/aksjeeieropplysninger/).
 
+Don't spend hours on this. It is voluntary. If you don't
+feel comfortable that you can finish the assignment in a
+reasonably short amount of time, don't worry.
+
 
 ## The application
 
@@ -61,13 +65,18 @@ Three endpoints are defined:
 After installing dependencies, you can run the local development server:
 
 ```
-$ python main.py
+$ python app/main.py
 ```
 
 (assuming `python` points to your Python 3 interpreter)
 
-The server is now running on [http://localhost:5000], and you should be able
-to access the endpoints listed above.
+The server is now running on [http://localhost:5000],
+and you should be able to access the endpoints listed above.
+
+If your operating system complains and tells you that
+you can't run the application on port 5000 (`"Address in use"`
+or some such), change the `SERVER_PORT` constant at the top
+of the `main.py` file and try again.
 
 
 ## Testing

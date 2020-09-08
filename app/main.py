@@ -3,6 +3,7 @@ import csv
 
 from flask import Flask, jsonify
 
+SERVER_PORT = 12000
 
 app = Flask(__name__)
 
@@ -317,4 +318,7 @@ def summary(orgnr):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(
+        debug=True,
+        port=SERVER_PORT
+    )
