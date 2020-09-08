@@ -190,6 +190,9 @@ class OwnershipDatabase:
     def get_owners(self, orgnr):
         """
         Returns all known owners for the company defined by `orgnr`.
+
+        In other words: all `OwnershipRecord` objects where this company
+        is the "owned entity".
         """
 
         # TODO: return all ownership records for `orgnr`
@@ -198,14 +201,34 @@ class OwnershipDatabase:
     def get_holdings(self, orgnr):
         """
         Returns all holdings attributed to the company defined
-        by `orgnr`, i.e. a list of all companies the company
-        holds shares in.
+        by `orgnr`.
+
+        In other words: all `OwnershipRecord` objects where this
+        company is the owner.
         """
 
         # TODO: return all holdings for `orgnr`
         return []
 
     def get_summary(self, orgnr):
+        """
+        Returns a summary of interesting facts about the company
+        defined by `orgnr`, namely
+
+        * The number of owners (or: how many entities hold
+          shares in this company)
+
+        * The number of holdings (or: how many companies
+          this company holds shares in)
+
+        * Whether or not the company has foreign owners.
+          Since this is the norwegian shareholder registry,
+          this should be `True` if the company has one or
+          more owners that are not registered in Norway.
+
+        * Whether or not the company has multiple share
+          classes
+        """
         # TODO: compute number of registered owners for the company
         number_of_owners = 0
 
@@ -237,6 +260,9 @@ db = OwnershipDatabase("data/example.csv")
 
 # If an invalid orgnr is given, the handler should
 # return a 400 BAD REQUEST response.
+#
+# Note: these should all work as-is, the only missing
+# piece here is to validate input parameters.
 
 
 @app.route("/<string:orgnr>/owners", methods=["GET"])
