@@ -3,6 +3,7 @@ import csv
 
 from flask import Flask, jsonify
 
+SERVER_PORT = 12000
 
 app = Flask(__name__)
 
@@ -10,20 +11,23 @@ app = Flask(__name__)
 class OwnershipRecord:
     """
     A record of an entity's ownership in a company.
+    Remember, an "entity" is a person or a company.
+
     Contains the following fields:
 
     * `orgnr`
-      The organization number of the company
+      The organization number of the company that is "being owned"
 
     * `company_name`
-      The registered name of the company
+      The registered name of the company that is "being owned"
 
     * `share_class`
       The share class of this holding, typically "Ordinære aksjer",
       but can also be "A-aksjer", "B-aksjer", or something else.
 
     * `owner_name`
-      The name of the owner
+      The name of the owner (the person/company that owns the shares
+      this record describes)
 
     * `owner_birth_or_orgnr`
       The owner's birth year if the owner is a person,
@@ -38,9 +42,13 @@ class OwnershipRecord:
 
     * `number_of_shares`
       The number of shares the owner holds in this company
+      **of this share class**. If a company has both A- and
+      B-shares, and a person holds both types of shares,
+      there will be two `OwnershipRecord` objects for that
+      person.
 
     * `total_shares`
-      Total number of shares in the company
+      Total number of outstanding shares in the company
     """
     orgnr = None
     company_name = None
@@ -182,22 +190,57 @@ class OwnershipDatabase:
                         owner_birth_or_orgnr,
                         owner_postal_address,
                         owner_country,
+
+                        # Note the int() cast here, which makes
+                        # these attributes easier to perform
+                        # calculations on later
                         int(number_of_shares),
                         int(total_shares)
                     )
                 )
 
     def get_owners(self, orgnr):
+        """
+        Returns all known owners for the company defined by `orgnr`.
+
+        In other words: all `OwnershipRecord` objects where this company
+        is the "owned entity".
+        """
 
         # TODO: return all ownership records for `orgnr`
         return []
 
     def get_holdings(self, orgnr):
+        """
+        Returns all holdings attributed to the company defined
+        by `orgnr`.
+
+        In other words: all `OwnershipRecord` objects where this
+        company is the owner.
+        """
 
         # TODO: return all holdings for `orgnr`
         return []
 
     def get_summary(self, orgnr):
+        """
+        Returns a summary of interesting facts about the company
+        defined by `orgnr`, namely
+
+        * The number of owners (or: how many entities hold
+          shares in this company)
+
+        * The number of holdings (or: how many companies
+          this company holds shares in)
+
+        * Whether or not the company has foreign owners.
+          Since this is the norwegian shareholder registry,
+          this should be `True` if the company has one or
+          more owners that are not registered in Norway.
+
+        * Whether or not the company has multiple share
+          classes
+        """
         # TODO: compute number of registered owners for the company
         number_of_owners = 0
 
@@ -229,6 +272,9 @@ db = OwnershipDatabase("data/example.csv")
 
 # If an invalid orgnr is given, the handler should
 # return a 400 BAD REQUEST response.
+#
+# Note: these should all work as-is, the only missing
+# piece here is to validate input parameters.
 
 
 @app.route("/<string:orgnr>/owners", methods=["GET"])
@@ -244,7 +290,7 @@ def owners(orgnr):
 
     return jsonify(
         {"owners": [o.to_json() for o in owners]}
-    )
+    ), 200
 
 
 @app.route("/<string:orgnr>/holdings", methods=["GET"])
@@ -260,7 +306,7 @@ def holdings(orgnr):
 
     return jsonify(
         {"holdings": [h.to_json() for h in holdings]}
-    )
+    ), 200
 
 
 @app.route("/<string:orgnr>/summary")
@@ -279,8 +325,11 @@ def summary(orgnr):
 
     result = db.get_summary(orgnr)
 
-    return jsonify(result)
+    return jsonify(result), 200
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(
+        debug=True,
+        port=SERVER_PORT
+    )

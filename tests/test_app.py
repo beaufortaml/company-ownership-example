@@ -2,7 +2,7 @@ import pytest
 
 from flask import url_for
 
-from main import app
+from app.main import app
 
 CANICA_AS = "891450052"
 
@@ -17,6 +17,7 @@ def client():
     return app.test_client()
 
 
+@pytest.mark.skip("Remove this line")
 @pytest.mark.parametrize("orgnr", [
     "1",
     "s",
