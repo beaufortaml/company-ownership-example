@@ -18,16 +18,22 @@ All application code is located in [app/main.py](app/main.py)
 Three endpoints are defined:
 
 * `/<orgnr>/owners`
-  Returns all registered owners for a company. An **owner**
-  is any entity (company _or_ person) that holds shares
-  in the company.
+
+  Returns all registered owners for a company.
+
+  An **owner** is any entity (company _or_ person)
+  that holds shares in the company.
 
 * `/<orgnr>/holdings`
+
   Returns all registered holdings a company has in other
-  companies. A **holding** means the number of/percentage of shares
+  companies.
+
+  A **holding** means the number of/percentage of shares
   a person or company has in another company.
 
 * /`<orgnr>/summary`
+
   Returns a basic summary of a company's ownership,
   as well as some other potentially interesting information.
 
