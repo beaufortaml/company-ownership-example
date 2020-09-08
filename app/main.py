@@ -244,7 +244,7 @@ def owners(orgnr):
 
     return jsonify(
         {"owners": [o.to_json() for o in owners]}
-    )
+    ), 200
 
 
 @app.route("/<string:orgnr>/holdings", methods=["GET"])
@@ -260,7 +260,7 @@ def holdings(orgnr):
 
     return jsonify(
         {"holdings": [h.to_json() for h in holdings]}
-    )
+    ), 200
 
 
 @app.route("/<string:orgnr>/summary")
@@ -279,7 +279,7 @@ def summary(orgnr):
 
     result = db.get_summary(orgnr)
 
-    return jsonify(result)
+    return jsonify(result), 200
 
 
 if __name__ == '__main__':
