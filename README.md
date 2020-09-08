@@ -117,5 +117,7 @@ are running Windows. Feel free to not complete the challenge.
 
 ## Submitting solutions
 
-Bring your solution with 
+We would prefer if you fork the repo and show us a pull request,
+but we're not picky. Anything goes.
+
 Happy coding!
