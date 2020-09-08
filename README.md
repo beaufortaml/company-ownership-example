@@ -9,7 +9,10 @@ For curious citizens, the full copy can be requested [here](https://www.skatteet
 
 Don't spend hours on this. It is voluntary. If you don't
 feel comfortable that you can finish the assignment in a
-reasonably short amount of time, don't worry.
+reasonably short amount of time, don't worry. We still
+want to talk to you.
+
+Read this file before doing anything.
 
 
 ## The application
