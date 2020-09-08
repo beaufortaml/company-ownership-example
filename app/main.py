@@ -188,11 +188,19 @@ class OwnershipDatabase:
                 )
 
     def get_owners(self, orgnr):
+        """
+        Returns all known owners for the company defined by `orgnr`.
+        """
 
         # TODO: return all ownership records for `orgnr`
         return []
 
     def get_holdings(self, orgnr):
+        """
+        Returns all holdings attributed to the company defined
+        by `orgnr`, i.e. a list of all companies the company
+        holds shares in.
+        """
 
         # TODO: return all holdings for `orgnr`
         return []
