@@ -8,7 +8,7 @@ the [norwegian share holder registry](https://www.altinn.no/starte-og-drive/skat
 For curious citizens, the full copy can be requested [here](https://www.skatteetaten.no/en/presse/aksjeeieropplysninger/).
 
 Don't spend hours on this. It is voluntary. If you don't
-feel comfortable that you can finish the project in a
+feel confident that you can finish the project in a
 reasonably short amount of time, don't worry. We still
 want to talk to you.
 
@@ -134,7 +134,7 @@ are running Windows. Feel free to not complete the challenge.
 
 ## Help, I'm stuck and/or confused!
 
-* Quit
+* Quit. We'll meet and discuss why the challenge is awful :(
 
 or
 
