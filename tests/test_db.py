@@ -8,7 +8,7 @@ CANICA_INVESTOR_AS = "885648312"
 TVIST_1_AS = "988844322"
 
 
-@pytest.mark.skip("Remove this line")
+#@pytest.mark.skip("Remove this line")
 def test_owners():
     owners = db.get_owners(CANICA_AS)
 
@@ -18,7 +18,7 @@ def test_owners():
     assert owners[0].owner_type == "company"
 
 
-@pytest.mark.skip("Remove this line")
+#@pytest.mark.skip("Remove this line")
 def test_holdings():
     expected_holdings = [
         ("911964236", "M62 HOLDING AS", "Ordinære aksjer", 50.0),
@@ -42,7 +42,7 @@ def test_holdings():
         assert summary in expected_holdings
 
 
-@pytest.mark.skip("Remove this line")
+#@pytest.mark.skip("Remove this line")
 def test_summary_holdings_and_owners():
     result = db.get_summary(CANICA_AS)
 
@@ -50,7 +50,7 @@ def test_summary_holdings_and_owners():
     assert result["number_of_holdings"] == 11
 
 
-@pytest.mark.skip("Remove this line")
+#@pytest.mark.skip("Remove this line")
 def test_summary_with_foreign_owners():
     result = db.get_summary(CANICA_INVESTOR_AS)
 
@@ -59,7 +59,7 @@ def test_summary_with_foreign_owners():
     assert result["has_foreign_owners"] is True
 
 
-@pytest.mark.skip("Remove this line")
+#@pytest.mark.skip("Remove this line")
 def test_summary_with_multiple_share_classes():
     result = db.get_summary(TVIST_1_AS)
 

@@ -3,7 +3,7 @@ import csv
 
 from flask import Flask, jsonify
 
-SERVER_PORT = 12000
+SERVER_PORT = 5000
 
 app = Flask(__name__)
 
@@ -95,8 +95,10 @@ class OwnershipRecord:
         # TODO: determine type of owner.
         # If owner is a person, return 'person'.
         # If owner is a company, return 'company'.
-
-        return ""
+        if(len(str(self.owner_birth_or_orgnr)) > 4):
+          return "company"
+        else:
+          return "person"
 
     @property
     def percentage(self):
@@ -113,7 +115,7 @@ class OwnershipRecord:
 
         # TODO: compute this holding's percentage of
         # total shares in the company
-        return 0.0
+        return self.number_of_shares/self.total_shares* 100
 
     def to_json(self):
         """
@@ -208,7 +210,12 @@ class OwnershipDatabase:
         """
 
         # TODO: return all ownership records for `orgnr`
-        return []
+        ownerships = []
+        for key, value in self.data.items():
+          if(key == orgnr):
+            for entry in value:
+              ownerships.append(entry)
+        return ownerships
 
     def get_holdings(self, orgnr):
         """
@@ -220,7 +227,12 @@ class OwnershipDatabase:
         """
 
         # TODO: return all holdings for `orgnr`
-        return []
+        holdings = []
+        for company, records in self.data.items():
+          for record in records:
+            if(record.owner_birth_or_orgnr == orgnr):
+              holdings.append(record)
+        return holdings
 
     def get_summary(self, orgnr):
         """
@@ -242,16 +254,25 @@ class OwnershipDatabase:
           classes
         """
         # TODO: compute number of registered owners for the company
-        number_of_owners = 0
+        owners = self.get_owners(orgnr)
+        number_of_owners = len(owners)
 
         # TODO: compute number of registered holdings for the company
-        number_of_holdings = 0
+        number_of_holdings = len(self.get_holdings(orgnr))
 
         # TODO: check if the company has foreign owners
         has_foreign_owners = False
+        for owner in owners:
+          if(owner.owner_country != "NOR"):
+            has_foreign_owners = True
 
         # TODO: check if the company has multiple share classes
         has_multiple_share_classes = False
+        classes = []
+        for owner in owners:
+          classes.append(owner.share_class)
+        if(len(classes) > 1):
+          has_multiple_share_classes = True
 
         return {
             "number_of_owners": number_of_owners,
@@ -283,8 +304,11 @@ def owners(orgnr):
     Returns a list of all known shareholders in the company
     defined by `orgnr`.
     """
-
     # TODO: validate `orgnr`
+    if(not(orgnr.isdigit() and len(str(orgnr)) == 9)):
+      return jsonify(
+        {"owners": []}
+    ), 400
 
     owners = db.get_owners(orgnr)
 
@@ -301,6 +325,10 @@ def holdings(orgnr):
     """
 
     # TODO: validate `orgnr`
+    if(not(orgnr.isdigit() and len(str(orgnr)) == 9)):
+      return jsonify(
+        {"owners": []}
+    ), 400
 
     holdings = db.get_holdings(orgnr)
 
@@ -322,6 +350,10 @@ def summary(orgnr):
     """
 
     # TODO: validate `orgnr`
+    if(not(orgnr.isdigit() and len(str(orgnr)) == 9)):
+      return jsonify(
+        {"owners": []}
+    ), 400
 
     result = db.get_summary(orgnr)
 
